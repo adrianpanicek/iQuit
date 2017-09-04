@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="SK_sk">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Výpoveď</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		
+		body {
+			font-size: 14px;
+			padding: 1em 4em;
+		}
+		
+		.container {
+			max-width: 720px;
+			margin: 0 auto;
+		}
+		
+		body:hover a[contenteditable] {
+			color: blue;
+		}
+		
+		section {
+			padding-bottom: 4em;
+		}
+		
+		section#zahlavie {
+			text-align: center;
+			font-size: 1.1em;
+		}
+		
+		section#zahlavie>span {
+			padding: 0px 0.5em;
+			border-bottom: 1px solid black;
+			font-weight: bold;
+		}
+		
+		section#adresa-zamestnavatela {
+			width: 10em;
+		}
+		
+		section#adresa-zamestnavatela>ul {
+			padding: 0;
+			list-style: none;
+		}
+		
+		section#buzzword {
+			text-align: center;
+			letter-spacing: 0.3em;
+			font-weight: bold;
+		}
+		section#podpis {
+			float: right;
+		}
+		section#podpis>div {
+			text-align: center;
+		}
+		
+		div#pdf {
+			position: fixed;
+			right: 0px;
+			bottom: 0px;
+			font-size: 3em;
+			background: #000;
+		}
+		div#pdf a {
+			padding: 1em;
+			color: #fff;
+			text-decoration: none;
+		}
+		div#pdf:hover a {
+			color: #000;
+		}
+		div#pdf:hover {
+			background: transparent;
+		}
+		
+		.hidden {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+<div class="container">
+	<section id="zahlavie">
+			<span>
+				{{#field}}meno{{/field}}
+				{{#field}}priezvisko{{/field}},
+				{{#field}}adresa{{/field}}
+			</span>
+	</section>
+	<section id="adresa-zamestnavatela">
+		<ul>
+			<li>{{#field}}meno_zamestnavatela{{/field}}</li>
+			<li>{{#efield}}adresa_zamestnavatela{{/efield}}</li>
+			<li>
+				{{#field}}psc_zamestnavatela{{/field}}
+				{{#field}}mesto_zamestnavatela{{/field}}
+			</li>
+		</ul>
+	</section>
+	<section id="vec">
+		<strong>Vec:</strong> Výpoveď
+	</section>
+	<section id="preambula">
+		V zmysle ustanovenia § 67 Zákonníka práce 311/2001 Z.z podávam
+	</section>
+	<section id="buzzword">
+		výpoveď
+	</section>
+	<section id="specifikacia">
+		z pracovného pomeru, založeného pracovnou zmluvou zo dňa {{#field}}datum_vytvorenia{{/field}}
+	</section>
+	<section id="poslednyden">
+		Môj pracovný pomer, založený uvedenou pracovnou zmluvou, sa tak skončí uplynutím dvojmesačnej výpovednej lehoty, ku dňu {{#field}}posledny_den{{/field}}
+	</section>
+	<section id="meno_mesto">
+		V {{#field}}mesto{{/field}}, dňa {{#field}}den{{/field}}
+	</section>
+	<section id="podpis">
+		<div>
+			..................................................<br>
+			podpis zamestnanca
+		</div>
+	</section>
+</div>
+
+<div id="pdf" class="hidden">
+	<a href="#">Generovať PDF</a>
+</div>
+
+<script>
+  var elements = document.querySelectorAll('[contenteditable]');
+  
+  elements.forEach(function(element) {
+    if(element.classList.contains('disable-enter')) {
+      element.onkeydown = function(event) {
+        if(event.keyCode == 13) {
+          return false;
+        }
+      };
+    }
+  });
+  
+  var generate_button = document.querySelector('div#pdf');
+  generate_button.classList.remove('hidden');
+  
+  generate_button.onclick = function() {
+    var params = "";
+    elements.forEach(function(element) {
+      params += '&' + element.id + "=" + (element.innerText || element.textContent);
+    });
+    window.location.href =  "/pdf?1" + params;
+    return true;
+  };
+</script>
+</body>
+</html>

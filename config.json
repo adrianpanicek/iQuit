@@ -1,0 +1,18 @@
+{
+  "formHtml": "html/form.html",
+  "formDefaults": {
+    "meno": "Jožko",
+    "priezvisko": "Mrkvička",
+    "adresa": "Hrušková 12, 900 00 Mrkvičkovo",
+
+    "meno_zamestnavatela": "Tonda Fracek s.r.o.",
+    "adresa_zamestnavatela": "Trstinová 5\n3. poschodie",
+    "psc_zamestnavatela": "900 00",
+    "mesto_zamestnavatela": "Mrkvičkovo",
+
+    "datum_vytvorenia": "01.01.2000",
+    "posledny_den": "31.02.2001",
+    "mesto": "Mrkvičkovo",
+    "den": "31.01.2001"
+  }
+}
