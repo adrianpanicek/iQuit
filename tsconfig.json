@@ -6,7 +6,7 @@
     "module": "commonjs",
     "target": "es2015",
     "allowJs": true,
-    "baseUrl": ".",
+    "baseUrl": "src",
     "paths": {
       "*": [
         "node_modules/*",

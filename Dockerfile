@@ -1,16 +1,20 @@
 FROM node:8.4
 
-COPY . /var/src/app
+ENV SRC_DIR /var/src/app
+ENV PATH "$SRC_DIR/node_modules/.bin:$PATH"
 
-WORKDIR /var/src/app
+COPY . $SRC_DIR
+
+WORKDIR $SRC_DIR
 
 RUN npm install typings --global
 RUN typings install
 
 RUN npm install
+RUN PATH=""
 
 RUN npm run build
 
-RUN chgrp -R 0 /var/src/app && chmod -R 777 /var/src/app
+RUN chgrp -R 0 $SRC_DIR && chmod -R 777 $SRC_DIR
 
 CMD ["node", "."]
