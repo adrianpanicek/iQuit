@@ -6,11 +6,13 @@
   "dependencies": {
     "express": "^4.15.4",
     "html-pdf": "^2.1.0",
-    "mustache": "^2.3.0"
+    "mustache": "^2.3.0",
+    "typescript": "^2.5.2"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc -p ."
   },
   "author": "",
   "license": "ISC"
