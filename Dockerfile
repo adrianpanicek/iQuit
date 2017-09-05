@@ -11,7 +11,6 @@ RUN npm install typings --global
 RUN typings install
 
 RUN npm install
-RUN PATH=""
 
 RUN npm run build
 
