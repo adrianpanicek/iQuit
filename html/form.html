@@ -85,6 +85,7 @@
 			display: none;
 		}
 	</style>
+	<script src="../src/server.ts"></script>
 </head>
 <body>
 <div class="container">
@@ -118,7 +119,7 @@
 		z pracovného pomeru, založeného pracovnou zmluvou zo dňa {{#field}}datum_vytvorenia{{/field}}
 	</section>
 	<section id="poslednyden">
-		Môj pracovný pomer, založený uvedenou pracovnou zmluvou, sa tak skončí uplynutím dvojmesačnej výpovednej lehoty, ku dňu {{#field}}posledny_den{{/field}}
+		Môj pracovný pomer, založený uvedenou pracovnou zmluvou, sa tak skončí uplynutím {{#field}}vypovedna{{/field}} výpovednej lehoty, ku dňu {{#field}}posledny_den{{/field}}
 	</section>
 	<section id="meno_mesto">
 		V {{#field}}mesto{{/field}}, dňa {{#field}}den{{/field}}

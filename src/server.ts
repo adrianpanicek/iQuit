@@ -61,9 +61,9 @@ app.get('/', (req: express.Request, res: express.Response) => {
 
 app.get('/pdf', (req: express.Request, res: express.Response) => {
     renderHtml(req.query).then((html: string) => {
-        let template = html.replace(/<script[\s\S]*<\/script>/gi, '');
+        let template = html.replace(/<script[\s\S]*?<\/script>/gi, '');
         pdf.create(template).toStream((err, stream) => {
-            if (!stream) {
+            if (!stream || err) {
                 res.status(500).send(err.toString());
                 return;
             }
